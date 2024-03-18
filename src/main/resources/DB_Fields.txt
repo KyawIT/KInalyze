@@ -1,0 +1,17 @@
+User UID            Example: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx           (Long String)
+File Name           Example: Main.java, HelloWorld.js                       (Short String)
+File Type           Example: applcation/java, text/plane                    (Short String)
+File Size           Example: 100 (in bytes)                                 (Number)
+File Content        Example: public class DoSome{...}                       (very long String repres. code)
+FILE_LANG           Example: java, js, cs, txt                              (Short String)
+VAR_ENG             Example: 65                                             (Number repres. in percentage)
+INDENTS             Example: True, False                                    (Boolean)
+COMPLEX             Example: 5                                              (Number)
+DATA_TYPE           Example: 3                                              (Number)
+BAD_INITS           Example: 3                                              (Number)
+BAD_PRACS           Example: Potenzielle schlechte...                       (Long String)
+COMMENTS            Example: count: 90 \n Whole count: 60...                (Long String)
+CONSTRUCTS          Example:
+UNREADABLES         Example:
+NAMING_CONVS        Example: All variables follow naming conventions...     (Long String)
+PERFORMANCE         Example: Good, Fair                                     (Short String)

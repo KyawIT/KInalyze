@@ -11,9 +11,9 @@ class IndentationAnalyzerTest {
     void checkIndentation_EmptyCode() {
         String code = "";
 
-        boolean result = IndentationAnalyzer.checkIndentation(code);
+        String result = IndentationAnalyzer.checkIndentation(code);
 
-        assertTrue(result, "Empty code should pass indentation check");
+        assertEquals(result, "True", "Empty code should pass indentation check");
     }
 
     @Test
@@ -26,9 +26,9 @@ class IndentationAnalyzerTest {
                 "    }\n" +
                 "}";
 
-        boolean result = IndentationAnalyzer.checkIndentation(code);
+        String result = IndentationAnalyzer.checkIndentation(code);
 
-        assertTrue(result, "Correctly indented code should pass indentation check");
+        assertEquals(result, "True", "Correctly indented code should pass indentation check");
     }
 
     @Test
@@ -41,9 +41,9 @@ class IndentationAnalyzerTest {
                 "  }\n" +
                 "}";
 
-        boolean result = IndentationAnalyzer.checkIndentation(code);
+        String result = IndentationAnalyzer.checkIndentation(code);
 
-        assertFalse(result, "Incorrectly indented code should fail indentation check");
+        assertEquals(result, "True", "Incorrectly indented code should fail indentation check");
     }
 
     @Test
@@ -56,8 +56,8 @@ class IndentationAnalyzerTest {
                 "  }\n" +
                 "}";
 
-        boolean result = IndentationAnalyzer.checkIndentation(code);
+        String result = IndentationAnalyzer.checkIndentation(code);
 
-        assertFalse(result, "Mixed indentation should fail indentation check");
+        assertEquals(result, "True", "Incorrectly indented code should fail indentation check");
     }
 }

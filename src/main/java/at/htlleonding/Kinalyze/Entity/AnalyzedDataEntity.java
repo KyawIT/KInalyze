@@ -16,7 +16,7 @@ public class AnalyzedDataEntity {
 
     private int VAR_ENG;
 
-    private String complex;
+    private double complex;
 
     private int data_type;
 
@@ -42,7 +42,7 @@ public class AnalyzedDataEntity {
     private String idents;
 
     public AnalyzedDataEntity(String user_uid, String fileName,
-                      int varEng, String complex, int dataType, int badInits,
+                      int varEng, double complex, int dataType, int badInits,
                       String badPracs, String comments, String constructs, String unreadables,
                       String namingConvs, String performance, String spaces) {
         this.user_uid = user_uid;

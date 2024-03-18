@@ -17,17 +17,17 @@ public class ComplexityAnalyzer {
     private static int maxNestingDepth = 0; // Diese Implementierung behandelt die Verschachtelungstiefe nicht wirklich.
     private static int currentDepth = 0; // Diese Implementierung behandelt die aktuelle Tiefe nicht wirklich.
 
-    public static String analyzeCodeComplexity(String code) {
+    public static double analyzeCodeComplexity(String code) {
         return analyzeCode(code);
     }
-    private static String analyzeCode(String code) {
+    private static double analyzeCode(String code) {
         resetCounters();
         analyzeFunctions(code);
         analyzeLoops(code);
         analyzeDecisionPoints(code);
         analyzeOperators(code);
         double score = calculateComplexityScore();
-        return buildResultString(score);
+        return score;
     }
 
     private static void resetCounters() {

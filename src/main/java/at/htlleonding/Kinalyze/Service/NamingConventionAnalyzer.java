@@ -25,7 +25,6 @@ public class NamingConventionAnalyzer {
         String variablesResult = analyzeVariableNames(cleanedCode);
         result.append(variablesResult);
 
-        result.append("Naming conventions analysis completed.");
         return result.toString();
     }
 

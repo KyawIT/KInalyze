@@ -10,14 +10,9 @@ class ComplexityAnalyzerTest {
     void analyzeCodeComplexity_EmptyCode() {
         String code = "";
 
-        String result = ComplexityAnalyzer.analyzeCodeComplexity(code);
+        double result = ComplexityAnalyzer.analyzeCodeComplexity(code);
 
-        assertEquals("Anzahl der Funktionen: 0\n" +
-                "Maximale Verschachtelungstiefe: 0\n" +
-                "Anzahl der Schleifen: 0\n" +
-                "Anzahl der Entscheidungspunkte: 0\n" +
-                "Anzahl der Operatoren: 0\n" +
-                "Komplexitätsbewertung: 0.00", result);
+        assertEquals(0.00, result);
     }
 
     @Test
@@ -31,14 +26,9 @@ class ComplexityAnalyzerTest {
                 "    }\n" +
                 "}";
 
-        String result = ComplexityAnalyzer.analyzeCodeComplexity(code);
+        double result = ComplexityAnalyzer.analyzeCodeComplexity(code);
 
-        assertEquals("Anzahl der Funktionen: 1\n" +
-                "Maximale Verschachtelungstiefe: 0\n" +
-                "Anzahl der Schleifen: 0\n" +
-                "Anzahl der Entscheidungspunkte: 1\n" +
-                "Anzahl der Operatoren: 6\n" +
-                "Komplexitätsbewertung: 2.00", result);
+        assertEquals(2.00, result);
     }
 
     @Test
@@ -55,13 +45,8 @@ class ComplexityAnalyzerTest {
                 "    }\n" +
                 "}";
 
-        String result = ComplexityAnalyzer.analyzeCodeComplexity(code);
+        double result = ComplexityAnalyzer.analyzeCodeComplexity(code);
 
-        assertEquals("Anzahl der Funktionen: 1\n" +
-                "Maximale Verschachtelungstiefe: 1\n" +
-                "Anzahl der Schleifen: 1\n" +
-                "Anzahl der Entscheidungspunkte: 2\n" +
-                "Anzahl der Operatoren: 10\n" +
-                "Komplexitätsbewertung: 5.02", result);
+        assertEquals(5.02, result);
     }
 }
