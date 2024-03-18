@@ -16,8 +16,6 @@ public class AnalyzedDataEntity {
 
     private int VAR_ENG;
 
-    private boolean indents;
-
     private String complex;
 
     private int data_type;
@@ -41,14 +39,15 @@ public class AnalyzedDataEntity {
 
     private String performance;
 
+    private String idents;
+
     public AnalyzedDataEntity(String user_uid, String fileName,
-                      int varEng, boolean indents, String complex, int dataType, int badInits,
+                      int varEng, String complex, int dataType, int badInits,
                       String badPracs, String comments, String constructs, String unreadables,
-                      String namingConvs, String performance, double lineMethodRatio) {
+                      String namingConvs, String performance, String spaces) {
         this.user_uid = user_uid;
         this.file_name = fileName;
         this.VAR_ENG = varEng;
-        this.indents = indents;
         this.complex = complex;
         this.data_type = dataType;
         this.bad_inits = badInits;
@@ -58,6 +57,7 @@ public class AnalyzedDataEntity {
         this.unreadables = unreadables;
         this.naming_convs = namingConvs;
         this.performance = performance;
+        this.idents = spaces;
     }
     public AnalyzedDataEntity() {
 
@@ -69,7 +69,6 @@ public class AnalyzedDataEntity {
                 "user_uid='" + user_uid + '\'' +
                 ", file_name='" + file_name + '\'' +
                 ", var_eng=" + VAR_ENG +
-                ", indents=" + indents +
                 ", complex=" + complex +
                 ", data_type=" + data_type +
                 ", bad_inits=" + bad_inits +
@@ -79,6 +78,7 @@ public class AnalyzedDataEntity {
                 ", unreadables='" + unreadables + '\'' +
                 ", naming_convs='" + naming_convs + '\'' +
                 ", performance='" + performance + '\'' +
+                ", spaces='" + idents + '\'' +
                 '}';
     }
 }
