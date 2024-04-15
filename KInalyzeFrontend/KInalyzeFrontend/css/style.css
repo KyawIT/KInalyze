@@ -52,7 +52,27 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
 }
-
+.codeOutput {
+  background-color: #191919;
+  color: white;
+  /*border-left: 3px solid #ccc;*/
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: auto; /* Horizontales Scrollen ermöglichen */
+  white-space: pre-wrap; /* Umbruch beibehalten */
+}
+.codeOutputHeader {
+  color: white;
+  /*border-left: 3px solid #ccc;*/
+  margin-left: -17%;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: auto; /* Horizontales Scrollen ermöglichen */
+  white-space: pre-wrap; /* Umbruch beibehalten */
+}
+.pre {
+  color: white !important;
+}
 .heading_container h2 {
   font-weight: bold;
   text-transform: uppercase;

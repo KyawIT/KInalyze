@@ -3,58 +3,6 @@ const generateUID = document.getElementById("generateUID");
 const analyzeButton = document.getElementById("analyze");
 let dataObj = {};
 
-document.getElementById("fileInput").addEventListener("change", (event) => {
-  let fileName = "";
-  let fileSize = "";
-  let fileType = "";
-  let fileContent = ""; // Moved declaration here
-
-  if (uidInput.value === "" || uidInput.value === null) {
-    alert("Please enter a UID before uploading a file.");
-    return;
-  }
-
-  const file = event.target.files[0];
-  const fileInfo = document.getElementById("fileInfo");
-
-  fileInfo.innerHTML = "";
-
-  if (file) {
-    fileName = file.name;
-    fileSize = file.size;
-    fileType = file.type;
-
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      fileContent = event.target.result; // Assign the file content here
-
-      const fileInfoText = `
-          <p><strong>File Name:</strong> ${fileName}</p>
-          <p><strong>File Size:</strong> ${fileSize} bytes</p>
-          <p><strong>File Type:</strong> ${fileType}</p>
-          <p><strong>File Content:</strong></p>
-          <pre>${fileContent}</pre>`;
-
-      fileInfo.innerHTML = fileInfoText;
-
-      // Create the data object and send it to the server here
-      let data = {
-        user_uid: uidInput.value,
-        file_name: fileName,
-        file_type: fileType,
-        file_size: fileSize,
-        file_content: fileContent,
-        file_lang: fileName.split(".")[1],
-      };
-      dataObj = data;
-      sendDataToServer(data, "http://localhost:8080/api/upload/file");
-    };
-    reader.readAsText(file);
-  } else {
-    fileInfo.textContent = "No file selected.";
-  }
-});
-
 document.getElementById("generateUID").addEventListener("click", () => {
   uidInput.value = generateUUID();
 });
@@ -66,11 +14,11 @@ function generateUUID() {
     return v.toString(16);
   });
 }
-
+/*
 analyzeButton.addEventListener("click", () => {
   console.log(dataObj);
   sendDataToServer(dataObj, "http://localhost:8080/api/file/analyze");
-});
+});*/
 
 function sendDataToServer(data, url) {
   console.log(data);
@@ -97,3 +45,97 @@ function sendDataToServer(data, url) {
       );
     });
 }
+
+const dropArea = document.getElementById('drop-area');
+
+        dropArea.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('highlight');
+        });
+
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('highlight');
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('highlight');
+
+            const files = e.dataTransfer.files;
+
+            if (files.length > 0) {
+                handleFiles(files);
+            }
+        });
+
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const files = e.target.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            for (const file of files) {
+                if (file.name.toLowerCase().endsWith('.java')) {
+                  let fileName = "";
+                  let fileSize = "";
+                  let fileType = "";
+                  let fileContent = ""; // Moved declaration here
+                
+                  if (uidInput.value === "" || uidInput.value === null) {
+                    alert("Please enter a UID before uploading a file.");
+                    return;
+                  }
+                
+                  const java = file;
+                  const fileInfo = document.getElementById("fileInfo");
+                
+                  fileInfo.innerHTML = "";
+                
+                  if (java) {
+                    fileName = java.name;
+                    fileSize = java.size;
+                    fileType = java.type;
+                
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                      fileContent = event.target.result; // Assign the file content here
+                
+                      const fileInfoText = `
+                      <div class="codeOutput">
+                          <div class="codeOutputHeader">
+                          <strong>File Name:</strong> ${fileName}<br>
+                          <strong>File Size:</strong> ${fileSize} bytes<br>
+                          <strong>File Type:</strong> ${fileType}<br>
+                          <strong>File Content:</strong>
+                          </div>
+                          ${fileContent}
+                        </div>`;
+                
+                      fileInfo.innerHTML = fileInfoText;
+                
+                      // Create the data object and send it to the server here
+                      let data = {
+                        user_uid: uidInput.value,
+                        file_name: fileName,
+                        file_type: fileType,
+                        file_size: fileSize,
+                        file_content: fileContent,
+                        file_lang: fileName.split(".")[1],
+                      };
+                      dataObj = data;
+                      sendDataToServer(data, "http://localhost:8080/api/upload/file");
+                    };
+                    reader.readAsText(java);
+                  } else {
+                    fileInfo.textContent = "No file selected.";
+                  }
+                }
+                else {
+                    alert('Invalid file: "' + file.name + '". Please upload a .java file');
+                }
+            }
+        }
