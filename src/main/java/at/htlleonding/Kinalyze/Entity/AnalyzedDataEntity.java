@@ -43,10 +43,14 @@ public class AnalyzedDataEntity {
 
     private double linemethodratio;
 
+    @Lob
+    @Column(columnDefinition = "CLOB")
+    private String varEng_Long;
+
     public AnalyzedDataEntity(String user_uid, String fileName,
                       int varEng, String indents, double complex, int dataType, int badInits,
                       String badPracs, String comments, String constructs, String unreadables,
-                      String namingConvs, String performance, double lineMethodRatio) {
+                      String namingConvs, String performance, double lineMethodRatio, String varEng_Long) {
         this.user_uid = user_uid;
         this.file_name = fileName;
         this.VAR_ENG = varEng;
@@ -61,6 +65,7 @@ public class AnalyzedDataEntity {
         this.naming_convs = namingConvs;
         this.performance = performance;
         this.linemethodratio = lineMethodRatio;
+        this.varEng_Long = varEng_Long;
     }
     public AnalyzedDataEntity() {
 
@@ -122,6 +127,10 @@ public class AnalyzedDataEntity {
         return linemethodratio;
     }
 
+    public String getVarEng_Long() {
+        return varEng_Long;
+    }
+
     @Override
     public String toString() {
         return "AnalyzedDataEntity{" + '\n' + '\n' +
@@ -139,6 +148,7 @@ public class AnalyzedDataEntity {
                 "naming_convs=" + naming_convs + '\n' + '\n' +
                 "performance=" + performance + '\n' + '\n' +
                 "lmr=" + linemethodratio + '\n' + '\n' +
+                "varEng_Long=" + varEng_Long + '\n' + '\n' +
                 '}';
     }
 }
