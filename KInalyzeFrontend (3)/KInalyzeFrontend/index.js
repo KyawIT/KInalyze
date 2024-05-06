@@ -91,20 +91,43 @@ function sendDataToServer(data, url) {
       console.log("Response from server:", data);
       console.log(data.comments);
       var analyzes = `
-      <p><strong>Comments:</strong> ${data.comments}</p>
-      <p><strong>Bad Initializations:</strong> ${data.bad_inits}</p>
-      <p><strong>Bad Practices:</strong> ${data.bad_pracs}</p>
-      <p><strong>Complexity:</strong> ${data.complex}</p>
-      <p><strong>Constructs:</strong> ${data.constructs}</p>
-      <p><strong>Data Types:</strong> ${data.data_type}</p>
-      <p><strong>File Name:</strong> ${data.file_name}</p>
-      <p><strong>Indents:</strong> ${data.indents}</p>
-      <p><strong>Line Method Ratio:</strong> ${data.linemethodratio}</p>
-      <p><strong>Naming Conventions:</strong> ${data.naming_convs}</p>
-      <p><strong>Performance:</strong> ${data.performance}</p>
-      <p><strong>Unreadables:</strong> ${data.unreadables}</p>
-      <p><strong>User UID:</strong> ${data.user_uid}</p>
-      <p><strong>Variable Naming:</strong> ${data.var_ENG}</p>
+      <br>
+      <br>
+      <h1>
+      <span style="color:#fff;">Analyze</span>
+      <span style="color:#fff;text-decoration-line: underline;text-decoration-style: dotted;
+      text-decoration-color: #808080;">${data.file_name}</span>
+      <span style="color:#fff;">:</span>
+      </h1>
+      <p style="color:#808080">${data.user_uid}</p>
+      <br>
+      <p  style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:left;"><strong>Comments:</strong> ${data.comments}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Bad Initializations:</strong> ${data.bad_inits}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:right;"><strong>Complexity:</strong> ${data.complex}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:left;"><strong>Constructs:</strong> ${data.constructs}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Data Types:</strong> ${data.data_type}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Indents:</strong> ${data.indents}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Line Method Ratio:</strong> ${data.linemethodratio}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Naming Conventions:</strong> ${data.naming_convs}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Performance:</strong> <span style="color: 
+    ${data.performance === 'Good' ? 'green' : 
+    data.performance === 'Fair' ? 'yellow' : 'red'};">
+    ${data.performance}</span></p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:left;"><strong>Unreadables:</strong> ${data.unreadables}</p>
+      <p style="  border: 2px solid #808080;
+      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:right;"><strong>Variable Naming:</strong> ${data.var_ENG}%</p>
     
       `
       document.getElementById("fileInfo").innerHTML = analyzes;
