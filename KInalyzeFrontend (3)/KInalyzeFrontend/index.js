@@ -106,7 +106,7 @@ function sendDataToServer(data, url) {
       <p style="  border: 2px solid #808080;
       border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Bad Initializations:</strong> ${data.bad_inits}</p>
       <p style="  border: 2px solid #808080;
-      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs}</p>
+      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs.substring(0, 65) + " ..."}</p>
       <p style="  border: 2px solid #808080;
       border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:right;"><strong>Complexity:</strong> ${data.complex}</p>
       <p style="  border: 2px solid #808080;
@@ -118,7 +118,7 @@ function sendDataToServer(data, url) {
       <p style="  border: 2px solid #808080;
       border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Line Method Ratio:</strong> ${data.linemethodratio}</p>
       <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Naming Conventions:</strong> ${data.naming_convs}</p>
+      border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Naming Conventions:</strong> ${data.naming_convs.substring(0, 20) + " ..."}</p>
       <p style="  border: 2px solid #808080;
       border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Performance:</strong> <span style="color: 
     ${data.performance === 'Good' ? 'green' : 
@@ -127,7 +127,7 @@ function sendDataToServer(data, url) {
       <p style="  border: 2px solid #808080;
       border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:left;"><strong>Unreadables:</strong> ${data.unreadables}</p>
       <p style="  border: 2px solid #808080;
-      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:right;"><strong>Variable Naming:</strong> ${data.var_ENG}%</p>
+      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:right;"><strong>Variable Englisch:</strong> ${data.var_ENG}%</p>
     
       `
       document.getElementById("fileInfo").innerHTML = analyzes;
