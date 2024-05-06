@@ -1,12 +1,19 @@
 package at.htlleonding.Kinalyze.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import com.detectlanguage.DetectLanguage;
 
 public class LanguageAnalyzer {
 
+    private static final String API_key = "05ac66f556c8d38aa1d8be92d53c5438";
     public static int analyzeLanguage(String input) {
         try {
             int percent = calculateEnglishPercentage(input).get();
@@ -17,7 +24,7 @@ public class LanguageAnalyzer {
     }
 
     static CompletableFuture<Integer> calculateEnglishPercentage(String input) {
-        List<String> allParts = splitParts(input);
+        List<String> allParts = filterVariables(input);
         AtomicInteger count = new AtomicInteger();
 
         CompletableFuture<Void>[] futures = new CompletableFuture[allParts.size()];
@@ -34,18 +41,32 @@ public class LanguageAnalyzer {
         return CompletableFuture.allOf(futures)
                 .thenApply(ignored -> (count.get() * 100) / allParts.size());
     }
-
-    static List<String> splitParts(String text) {
-        // Implementation of the splitParts method
-        // ...
-
-        return List.of(text.split(" "));
+    public static String[] splitCamelCase(String input) {
+        return input.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
     }
 
-    static CompletableFuture<Boolean> isEnglish(String partToDetect) {
+    public static CompletableFuture<Boolean> isEnglish(String text) {
         return CompletableFuture.supplyAsync(() -> {
-            // Simple language detection based on the presence of non-alphabetic characters
-            return !partToDetect.matches(".*[^a-zA-Z].*");
+            try {
+                DetectLanguage.apiKey = API_key;
+                String language = DetectLanguage.simpleDetect(text);
+                return language.equals("en");
+            } catch (Exception e) {
+                return false;
+            }
         });
+    }
+    public static List<String> filterVariables(String code) {
+        List<String> variableNames = new ArrayList<>();
+
+        // Regular expression to find variable names
+        Pattern pattern = Pattern.compile("\\b\\w+\\b(?=\\s*=)");
+        Matcher matcher = pattern.matcher(code);
+
+        while (matcher.find()) {
+            variableNames.add(matcher.group());
+        }
+
+        return variableNames;
     }
 }

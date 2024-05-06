@@ -63,7 +63,7 @@ public class NamingConventionAnalyzer {
         return variableName.length() == 1 && "ijk".contains(variableName);
     }
 
-    private static boolean isCamelCase(String variableName) {
+    public static boolean isCamelCase(String variableName) {
         // Check if the variable name follows CamelCase convention
         return Pattern.matches("^[a-z]+(?:[A-Z][a-z]*)*$", variableName);
     }
