@@ -224,10 +224,15 @@ a:focus {
   font-size: 24px;
   color: #ffffff;
 }
-
+.anal{
+  color:#444444;
+}
 .custom_nav-container {
   z-index: 99999;
   padding: 15px 0;
+}
+.navbar-brand:hover{
+  opacity: 0.5;
 }
 
 .custom_nav-container .navbar-toggler {
