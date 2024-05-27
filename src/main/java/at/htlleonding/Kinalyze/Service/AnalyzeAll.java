@@ -28,8 +28,7 @@ public class AnalyzeAll {
         return new AnalyzedDataEntity(user_id, file_name,
                 LanguageAnalyzer.analyzeLanguage(file_content), IndentationAnalyzer.checkIndentation(file_content), ComplexityAnalyzer.analyzeCodeComplexity(file_content),
                 data_type, BadInitsAnalyzer.analyzeCode(file_content), BadPracticeAnalyzer.analyzeCode(file_content), CommentAnalyzer.analyzeComments(file_content),
-                constructs, unreadables, NamingConventionAnalyzer.analyzeCodeNamingConventions(file_content), PerformanceAnalyzer.shortAnalyze(file_content), LineMethodRatioAnalyzer.calculateLineMethodRatio(file_content),
-                LanguageAnalyzer_LongOutput.writeEnglishDesc(file_content).toString()
+                constructs, unreadables, NamingConventionAnalyzer.analyzeCodeNamingConventions(file_content), PerformanceAnalyzer.shortAnalyze(file_content), LineMethodRatioAnalyzer.calculateLineMethodRatio(file_content)
         );
     }
 }

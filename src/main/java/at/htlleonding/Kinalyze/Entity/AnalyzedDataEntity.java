@@ -1,20 +1,17 @@
 package at.htlleonding.Kinalyze.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ANALYZED_DATA")
 public class AnalyzedDataEntity {
     @Id
     private String user_uid;
-
-    @Id
     private String file_name;
 
     private int VAR_ENG;
+
+    private String indents;
 
     private double complex;
 
@@ -23,39 +20,37 @@ public class AnalyzedDataEntity {
     private int bad_inits;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String bad_pracs;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String comments;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String constructs;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String unreadables;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String naming_convs;
 
     private String performance;
 
-    private String idents;
-
-    @Lob
-    @Column(columnDefinition = "CLOB")
-    private String varEng_Long;
+    private double linemethodratio;
 
     public AnalyzedDataEntity(String user_uid, String fileName,
-                      int varEng, double complex, int dataType, int badInits,
-                      String badPracs, String comments, String constructs, String unreadables,
-<<<<<<< HEAD
-                      String namingConvs, String performance, double lineMethodRatio, String varEng_Long) {
-=======
-                      String namingConvs, String performance, String spaces) {
->>>>>>> 3b436d9cf7e8e6c9d0a80f4dd4b3b73c77e2f639
+                              int varEng, String indents, double complex, int dataType, int badInits,
+                              String badPracs, String comments, String constructs, String unreadables,
+                              String namingConvs, String performance, double lineMethodRatio) {
         this.user_uid = user_uid;
         this.file_name = fileName;
         this.VAR_ENG = varEng;
+        this.indents = indents;
         this.complex = complex;
         this.data_type = dataType;
         this.bad_inits = badInits;
@@ -65,18 +60,12 @@ public class AnalyzedDataEntity {
         this.unreadables = unreadables;
         this.naming_convs = namingConvs;
         this.performance = performance;
-<<<<<<< HEAD
         this.linemethodratio = lineMethodRatio;
-        this.varEng_Long = varEng_Long;
-=======
-        this.idents = spaces;
->>>>>>> 3b436d9cf7e8e6c9d0a80f4dd4b3b73c77e2f639
     }
     public AnalyzedDataEntity() {
 
     }
 
-<<<<<<< HEAD
     public String getUser_uid() {
         return user_uid;
     }
@@ -133,10 +122,6 @@ public class AnalyzedDataEntity {
         return linemethodratio;
     }
 
-    public String getVarEng_Long() {
-        return varEng_Long;
-    }
-
     @Override
     public String toString() {
         return "AnalyzedDataEntity{" + '\n' + '\n' +
@@ -154,25 +139,6 @@ public class AnalyzedDataEntity {
                 "naming_convs=" + naming_convs + '\n' + '\n' +
                 "performance=" + performance + '\n' + '\n' +
                 "lmr=" + linemethodratio + '\n' + '\n' +
-                "varEng_Long=" + varEng_Long + '\n' + '\n' +
-=======
-    @Override
-    public String toString() {
-        return "FileEntity{" +
-                "user_uid='" + user_uid + '\'' +
-                ", file_name='" + file_name + '\'' +
-                ", var_eng=" + VAR_ENG +
-                ", complex=" + complex +
-                ", data_type=" + data_type +
-                ", bad_inits=" + bad_inits +
-                ", bad_pracs='" + bad_pracs + '\'' +
-                ", comments='" + comments + '\'' +
-                ", constructs='" + constructs + '\'' +
-                ", unreadables='" + unreadables + '\'' +
-                ", naming_convs='" + naming_convs + '\'' +
-                ", performance='" + performance + '\'' +
-                ", spaces='" + idents + '\'' +
->>>>>>> 3b436d9cf7e8e6c9d0a80f4dd4b3b73c77e2f639
                 '}';
     }
 }
