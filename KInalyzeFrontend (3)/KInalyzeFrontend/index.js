@@ -27,13 +27,14 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
     const reader = new FileReader();
     reader.onload = function (event) {
       fileContent = event.target.result; // Assign the file content here
-
-      const fileInfoText = `
+      const fileInfoText = ``;
+      /*const fileInfoText = 
+      `
           <p><strong>File Name:</strong> ${fileName}</p>
           <p><strong>File Size:</strong> ${fileSize} bytes</p>
           <p><strong>File Type:</strong> ${fileType}</p>
           <p><strong>File Content:</strong></p>
-          <pre>${fileContent}</pre>`;
+          <pre>${fileContent}</pre>`;*/
 
       fileInfo.innerHTML = fileInfoText;
 
@@ -104,7 +105,9 @@ function sendDataToServer(data, url) {
       <p  style="  border: 2px solid #808080;
       border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:left;"><strong>Comments:</strong> ${data.comments}</p>
       <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Bad Initializations:</strong> ${data.bad_inits}</p>
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Bad Initializations:</strong><span style="color: 
+      ${parseInt(data.bad_inits) === 0 ? 'green' : 
+      parseInt(data.bad_inits) <= 2 ? 'yellow' : 'red'};"> ${data.bad_inits}</span></p>
       <p style="  border: 2px solid #808080;
       border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs.substring(0, 50) + " ..."}</p>
       <p style="  border: 2px solid #808080;
@@ -116,7 +119,9 @@ function sendDataToServer(data, url) {
       <p style="  border: 2px solid #808080;
       border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Indents:</strong> ${data.indents}</p>
       <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Line Method Ratio:</strong> ${data.linemethodratio}</p>
+      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Line Method Ratio:</strong><span style="color: 
+      ${parseInt(data.linemethodratio) <= 20 ? 'green' : 
+      parseInt(data.linemethodratio) <= 40 ? 'yellow' : 'red'};"> ${data.linemethodratio}</span></p>
       <p style="  border: 2px solid #808080;
       border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Naming Conventions:</strong> ${data.naming_convs.substring(0, 20) + " ..."}</p>
       <p style="  border: 2px solid #808080;
@@ -127,7 +132,9 @@ function sendDataToServer(data, url) {
       <p style="  border: 2px solid #808080;
       border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:left;"><strong>Unreadables:</strong> ${data.unreadables}</p>
       <p style="  border: 2px solid #808080;
-      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:right;"><strong>Variable Englisch:</strong> ${data.var_ENG}%</p>
+      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:right;"><strong>Variable Englisch:</strong><span style="color: 
+      ${parseInt(data.var_ENG) >=90  ? 'green' : 
+      parseInt(data.var_ENG)>= 70 ? 'yellow' : 'red'};"> ${data.var_ENG}%</span></p>
     
       `
       document.getElementById("fileInfo").innerHTML = analyzes;
