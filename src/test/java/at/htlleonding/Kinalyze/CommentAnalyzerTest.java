@@ -11,7 +11,7 @@ class CommentAnalyzerTest {
     void analyzeComments_EmptyCode() {
         String code = "";
 
-        String result = CommentAnalyzer.analyzeComments(code);
+        String result = SpaceAnalyzer.analyzeComments(code);
 
         assertEquals("count: 0 \nWhole count: 0 \nRate: 0%", result);
     }
@@ -25,7 +25,7 @@ class CommentAnalyzerTest {
                 "    }\n" +
                 "}";
 
-        String result = CommentAnalyzer.analyzeComments(code);
+        String result = SpaceAnalyzer.analyzeComments(code);
 
         assertEquals("count: 62 \nWhole count: 30 \nRate: 48%", result);
     }
@@ -40,7 +40,7 @@ class CommentAnalyzerTest {
                 "    }\n" +
                 "}";
 
-        String result = CommentAnalyzer.analyzeComments(code);
+        String result = SpaceAnalyzer.analyzeComments(code);
 
         assertEquals("count: 90 \nWhole count: 60 \nRate: 66%", result);
     }
@@ -55,7 +55,7 @@ class CommentAnalyzerTest {
                 "    }\n" +
                 "}";
 
-        String result = CommentAnalyzer.analyzeComments(code);
+        String result = SpaceAnalyzer.analyzeComments(code);
 
         assertEquals("count: 81 \nWhole count: 0 \nRate: 0%", result);
     }
