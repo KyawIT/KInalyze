@@ -15,3 +15,41 @@ CONSTRUCTS          Example:
 UNREADABLES         Example:
 NAMING_CONVS        Example: All variables follow naming conventions...     (Long String)
 PERFORMANCE         Example: Good, Fair                                     (Short String)
+
+------
+NEW FIELDS - TABLE CREATE STATEMENTS
+
+create table k_code (
+                        c_id          integer   GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+                        c_data        BLOB,
+                        c_filename    varchar(64),
+                        c_fileending  varchar(8)
+);
+
+create table k_session (
+                           s_id    integer  GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+                           s_date  TIMESTAMP,
+                           c_id    integer,
+                           FOREIGN KEY (c_id) references k_code(c_id)
+);
+
+create table k_analysis (
+                            a_id        integer  GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+                            a_type      varchar(64),
+                            a_result    varchar(64),
+                            s_id        integer,
+                            FOREIGN KEY (s_id) references k_session(s_id)
+);
+
+create table k_analysis_detail (
+                                   ad_id       integer  GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+                                   ad_row      integer,
+                                   ad_content  varchar(128),
+                                   a_id        integer  UNIQUE NOT NULL,
+                                   FOREIGN KEY (a_id) REFERENCES k_analysis(a_id)
+);
+
+drop table k_analysis_detail;
+drop table k_analysis;
+drop table k_session;
+drop table k_code;
