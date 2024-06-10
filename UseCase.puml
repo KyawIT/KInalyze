@@ -1,0 +1,45 @@
+@startuml
+actor User
+
+Usecase File_einlesen
+Usecase File_analyse
+Usecase Grob_analyse
+Usecase Fein_analyse
+Usecase Komplexität
+Usecase Komentare
+Usecase Bennenung
+Usecase Konstruktur
+Usecase Datentyp
+Usecase Einrückungen
+Usecase VariablenEnglisch
+Usecase Leerzeilen
+Usecase UnleserlicheAusdrücke
+Usecase Methodenquote
+Usecase Spracherkennung
+Usecase Initialisierungen
+Usecase Literale
+Usecase Performance
+
+User -- File_einlesen
+User -- File_analyse
+left to right direction
+
+File_analyse ..> Grob_analyse : include
+File_analyse ..> Fein_analyse : include
+
+Fein_analyse ..> Komplexität : <<include>>
+Fein_analyse ..> Komentare : <<include>>
+Fein_analyse ..> Bennenung : <<include>>
+Fein_analyse ..> Konstruktur : <<include>>
+Fein_analyse ..> Datentyp : <<include>>
+Fein_analyse ..> Einrückungen : <<include>>
+Fein_analyse ..> VariablenEnglisch : <<include>>
+Fein_analyse ..> Leerzeilen : <<include>>
+Fein_analyse ..> UnleserlicheAusdrücke : <<include>>
+Fein_analyse ..> Methodenquote : <<include>>
+Fein_analyse ..> Spracherkennung : <<include>>
+Fein_analyse ..> Initialisierungen : <<include>>
+Fein_analyse ..> Literale : <<include>>
+Fein_analyse ..> Performance : <<include>>
+@enduml
+
