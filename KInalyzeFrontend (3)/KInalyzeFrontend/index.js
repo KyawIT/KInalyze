@@ -95,46 +95,61 @@ function sendDataToServer(data, url) {
       <br>
       <br>
       <h1>
-      <span style="color:#fff;">Analyze</span>
-      <span style="color:#fff;text-decoration-line: underline;text-decoration-style: dotted;
-      text-decoration-color: #808080;">${data.file_name}</span>
-      <span style="color:#fff;">:</span>
+        <span style="color:#fff;">Analyze</span>
+        <span style="color:#fff;text-decoration-line: underline;text-decoration-style: dotted; text-decoration-color: #808080;">${data.file_name}</span>
+        <span style="color:#fff;">:</span>
       </h1>
       <p style="color:#808080">${data.user_uid}</p>
       <br>
-      <p  style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:left;"><strong>Comments:</strong> ${data.comments}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Bad Initializations:</strong><span style="color: 
-      ${parseInt(data.bad_inits) === 0 ? 'green' : 
-      parseInt(data.bad_inits) <= 2 ? 'yellow' : 'red'};"> ${data.bad_inits}</span></p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs.substring(0, 50) + " ..."}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:right;"><strong>Complexity:</strong> ${data.complex}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:left;"><strong>Constructs:</strong> ${data.constructs}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Data Types:</strong> ${data.data_type}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Indents:</strong> ${data.indents}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Line Method Ratio:</strong><span style="color: 
-      ${parseInt(data.linemethodratio) <= 20 ? 'green' : 
-      parseInt(data.linemethodratio) <= 40 ? 'yellow' : 'red'};"> ${data.linemethodratio}</span></p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444;width:49%;float:left;"><strong>Naming Conventions:</strong> ${data.naming_convs.substring(0, 20) + " ..."}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Performance:</strong> <span style="color: 
-    ${data.performance === 'Good' ? 'green' : 
-    data.performance === 'Fair' ? 'yellow' : 'red'};">
-    ${data.performance}</span></p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:left;"><strong>Unreadables:</strong> ${data.unreadables}</p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px; padding:10px;background-color:#444444;width:49%;float:right;"><strong>Variable Englisch:</strong><span style="color: 
-      ${parseInt(data.var_ENG) >=90  ? 'green' : 
-      parseInt(data.var_ENG)>= 70 ? 'yellow' : 'red'};"> ${data.var_ENG}%</span></p>
+      <p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.bad_inits) === 0 ? '#C9ED82' : parseInt(data.bad_inits) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:left;">
+      <strong style="color: #000000;>Comments:</strong> 
+      <span style="color: #000000;>${data.comments}</span>
+      </p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.bad_inits) === 0 ? '#99C66C' : parseInt(data.bad_inits) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:right; color: #fff;">
+  <strong style="color: #000000">Bad Initializations:</strong>
+  <span style="padding: 5px; color: #000000">${data.bad_inits}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.bad_pracs) === 0 ? '#99C66C' : parseInt(data.bad_pracs) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:left;">
+  <strong style="color: #000000">Bad Practices:</strong> 
+  <span style="padding: 5px; color: #000000">${data.bad_pracs.substring(0, 50) + " ..."}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.complex) === 0 ? '#99C66C' : parseInt(data.complex) <= 0.5 ? '#ffc166' : '#f44'}; width:49%;float:right;">
+  <strong style="color: #000000;">Complexity:</strong> 
+  <span style="color: #000000;">${data.complex}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.constructs) === 0 ? '#99C66C' : parseInt(data.constructs) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:left;">
+  <strong style="color: #000000;">Constructs:</strong>
+  <span style="color: #000000;">${data.constructs}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.data_type) === 0 ? '#99C66C' : parseInt(data.data_type) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:right;">
+  <strong style="color: #000000;">Data Types:</strong> 
+  <span style="color: #000000;">${data.data_type}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.indents) === 0 ? '#99C66C' : parseInt(data.indents) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:left;">
+  <strong style="color: #000000;">Indents:</strong> 
+  <span style="color: #000000;">${data.indents}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.linemethodratio) <= 20 ? '#99C66C' : parseInt(data.linemethodratio) <= 30 ? '#ffc166' : '#f44'}; width:49%;float:right;">
+  <strong style="color: #000000;">Line Method Ratio:</strong>
+  <span style="color: #000000">${data.linemethodratio}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.linemethodratio) === 0 ? '#99C66C' : parseInt(data.linemethodratio) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:left;">
+  <strong style="color: #000000;">Naming Conventions:</strong> 
+  <span style="color: #000000;">${data.naming_convs.substring(0, 20) + " ..."}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${data.performance === 'Good' ? '#99C66C' : data.performance === 'Fair' ? '#ffc166' : '#f44'}; width:49%;float:right;">
+  <strong style="color: #000000;">Performance:</strong>
+  <span style="color: #000000">${data.performance}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.bad_inits) === 0 ? '#99C66C' : parseInt(data.bad_inits) <= 2 ? '#ffc166' : '#f44'}; width:49%;float:left;">
+  <strong style="color: #000000;">Unreadables:</strong> 
+  <span style="color: #000000;">${data.unreadables}</span>
+</p>
+<p style="border: 2px solid #808080; border-radius: 5px; padding:10px;background-color:${parseInt(data.var_ENG) === 100 ? '#99C66C' : parseInt(data.var_ENG) >= 80 ? '#ffc166' : '#f44'}; width:49%;float:right;">
+  <strong style="color: #000000">Variable Englisch:</strong>
+  <span style="color: #000000;">${data.var_ENG}%</span>
+</p>
+
     
       `
       document.getElementById("fileInfo").innerHTML = analyzes;

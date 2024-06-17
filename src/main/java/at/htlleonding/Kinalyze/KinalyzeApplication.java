@@ -13,5 +13,4 @@ public class KinalyzeApplication {
 
 		SpringApplication.run(KinalyzeApplication.class, args);
 	}
-
 }
