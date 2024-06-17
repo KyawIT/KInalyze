@@ -13,31 +13,39 @@ public class BadPracticeAnalyzer {
     public static String analyzeCode(String code) {
         StringBuilder resultBuilder = new StringBuilder();
 
-        // Regex-Muster, um nach verschiedenen Mustern zu suchen
-        String patternIf = "if\\s*\\(\\s*(\\w+)\\s*(==|!=|===|!==)?\\s*(true|false|True|False)\\s*\\)|\\s*(\\w+)\\s*(==|!=|===|!==)?\\s*(true|false|True|False)\\s*\\?";
-        String patternFor = "for\\s*\\(\\s*(?:\\w+\\s+)?(\\w+)\\s*=\\s*\\w+;\\s*\\1\\s*<[^;]+;\\s*\\1\\+\\+\\s*\\)\\s*\\{(?:[^{}]*\\{\\s*[^{}]*\\}\\s*|[^{}]*)*?\\1\\+\\+;";
+        // Regex patterns to search for various patterns
+        String patternIf = "(?:else\\s+)?if\\s*\\(\\s*(\\w+)\\s*(==|!=|===|!==)?\\s*(true|false|True|False)\\s*\\)|\\s*(\\w+)\\s*(==|!=|===|!==)?\\s*(true|false|True|False)\\s*\\?";
+        String patternFor = "for\\s*\\(\\s*int\\s+\\w+\\s*=\\s*\\d+;\\s*\\w+\\s*<\\s*\\d+;\\s*\\w+\\+\\+\\s*\\)";
 
-        // Suche nach Übereinstimmungen für if-Muster
-        Pattern compiledPatternIf = Pattern.compile(patternIf);
-        Matcher matcherIf = compiledPatternIf.matcher(code);
+        // Split the code into lines
+        String[] lines = code.split("\\r?\\n");
+
         int matchesIfCount = 0;
-        while (matcherIf.find()) {
-            matchesIfCount++;
-            resultBuilder.append("Potenzielle schlechte Praxis in if-Bedingung gefunden: ").append(matcherIf.group()).append("\n");
-        }
-        resultBuilder.append("Anzahl der potenziellen schlechten Praktiken in if-Bedingungen gefunden: ").append(matchesIfCount).append("\n");
-
-        // Suche nach Übereinstimmungen für for-Muster
-        Pattern compiledPatternFor = Pattern.compile(patternFor);
-        Matcher matcherFor = compiledPatternFor.matcher(code);
         int matchesForCount = 0;
-        while (matcherFor.find()) {
-            matchesForCount++;
-            resultBuilder.append("Potenzielle schlechte Praxis in for-Schleife gefunden: ").append(matcherFor.group()).append("\n");
+
+        // Iterate over each line
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i];
+
+            // Search for matches for if-pattern
+            Pattern compiledPatternIf = Pattern.compile(patternIf);
+            Matcher matcherIf = compiledPatternIf.matcher(line);
+            while (matcherIf.find()) {
+                matchesIfCount++;
+                resultBuilder.append("In if-Bedingung in Zeile: ")
+                        .append(i + 1).append("\n");
+            }
+
+            // Search for matches for for-pattern
+            Pattern compiledPatternFor = Pattern.compile(patternFor);
+            Matcher matcherFor = compiledPatternFor.matcher(line);
+            while (matcherFor.find()) {
+                matchesForCount++;
+                resultBuilder.append("In for-Schleife in Zeile: ")
+                        .append(i + 1).append("\n");
+            }
         }
-        resultBuilder.append("Anzahl der potenziellen schlechten Praktiken in for-Schleifen gefunden: ").append(matchesForCount).append("\n");
 
-        return resultBuilder.toString();
+        return (matchesIfCount + matchesForCount + " potenziell schlechte Praxen gefunden:\n\n") + resultBuilder.toString();
     }
-
 }

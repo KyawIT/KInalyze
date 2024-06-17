@@ -108,8 +108,8 @@ function sendDataToServer(data, url) {
       border-radius: 5px;  padding:10px;background-color:#444444; width:49%;float:right;"><strong>Bad Initializations:</strong><span style="color: 
       ${parseInt(data.bad_inits) === 0 ? 'green' : 
       parseInt(data.bad_inits) <= 2 ? 'yellow' : 'red'};"> ${data.bad_inits}</span></p>
-      <p style="  border: 2px solid #808080;
-      border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs.substring(0, 50) + " ..."}</p>
+      <a href="data:text/plain,${encodeURIComponent(data.bad_pracs)}" target="_blank"><p style="  border: 2px solid #808080; border-radius: 5px; width:49%; 
+      padding:10px;background-color:#444444;float:left;"><strong>Bad Practices:</strong> ${data.bad_pracs.split(" ")[0]}</p></a>
       <p style="  border: 2px solid #808080;
       border-radius: 5px; width:49%; padding:10px;background-color:#444444;float:right;"><strong>Complexity:</strong> ${data.complex}</p>
       <p style="  border: 2px solid #808080;
